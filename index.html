@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Farah Fawzy — AI &amp; Data Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bg: #F7F5F0; --card: #FFFFFF; --ink: #14213D; --dim: #566074;
+    --line: #DAD5C8; --gold: #9A6B12; --teal: #1F7A6D;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1B2D; --card: #142440; --ink: #EDEFF2; --dim: #A8B3C4;
+      --line: #2A3B57; --gold: #D4A24C; --teal: #6FBFB0;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1B2D; --card: #142440; --ink: #EDEFF2; --dim: #A8B3C4;
+    --line: #2A3B57; --gold: #D4A24C; --teal: #6FBFB0;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px)); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif; line-height: 1.65;
+  }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--bg); z-index: 20; }
+  h1, h2, h3 { font-family: 'Space Grotesk', 'Inter', sans-serif; margin: 0; letter-spacing: -0.01em; }
+  a { color: var(--teal); text-decoration: none; border-bottom: 1px solid transparent; }
+  a:hover { border-bottom-color: currentColor; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+  header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 15; background: var(--bg); border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 56px; gap: 16px; }
+  .nav b { font-family: 'Space Grotesk', sans-serif; font-size: 15px; }
+  .nav-links { display: flex; gap: 20px; font-size: 14px; }
+  .nav-links a { color: var(--dim); }
+  .nav-links a:hover { color: var(--ink); }
+  .theme-btn { background: none; border: 1px solid var(--line); color: var(--dim); border-radius: 6px; padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer; }
+  @media (max-width: 560px) { .nav-links { display: none; } }
+
+  .hero { position: relative; overflow: hidden; padding: 80px 0 64px; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 32px 32px;
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 90%); mask-image: linear-gradient(to bottom, #000, transparent 90%);
+  }
+  .tag { color: var(--gold); font-size: 14px; font-weight: 500; margin-bottom: 12px; }
+  .hero h1 { font-size: clamp(40px, 8vw, 68px); font-weight: 700; line-height: 1.05; }
+  .hero .line { font-family: 'Space Grotesk', sans-serif; font-size: clamp(20px, 3.4vw, 28px); color: var(--dim); margin-top: 14px; }
+  .hero .pitch { max-width: 60ch; margin-top: 20px; font-size: 16.5px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-block; padding: 10px 18px; border-radius: 8px; font-size: 14.5px; font-weight: 500; border: 1px solid var(--line); color: var(--ink); background: var(--card); }
+  .btn.primary { background: var(--gold); border-color: var(--gold); color: #0F1B2D; }
+  .btn:hover { border-bottom-color: inherit; transform: translateY(-1px); }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--line); border-radius: 14px; background: var(--card); margin-bottom: 8px; }
+  .stat { padding: 22px 20px; border-left: 1px solid var(--line); }
+  .stat:first-child { border-left: none; }
+  .stat .n { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; color: var(--gold); line-height: 1.1; }
+  .stat .d { font-size: 13px; color: var(--dim); margin-top: 6px; line-height: 1.45; }
+  @media (max-width: 720px) { .stats { grid-template-columns: 1fr 1fr; } .stat:nth-child(3) { border-left: none; } .stat:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+  section { padding: 56px 0 8px; }
+  .label { font-size: 13px; color: var(--gold); font-weight: 500; margin-bottom: 6px; }
+  h2 { font-size: clamp(26px, 4vw, 34px); margin-bottom: 28px; }
+
+  .case { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 30px; margin-bottom: 24px; }
+  .case h3 { font-size: 22px; }
+  .case .ctx { color: var(--dim); font-size: 14.5px; margin-top: 6px; max-width: 70ch; }
+  .case h4 { font-size: 12.5px; font-weight: 600; color: var(--gold); margin: 22px 0 8px; letter-spacing: .02em; text-transform: uppercase; }
+  .case ul { margin: 0; padding-left: 18px; font-size: 14.5px; }
+  .case li { margin-bottom: 6px; }
+  .case li strong { color: var(--ink); }
+  .stack { margin-top: 20px; padding-top: 16px; border-top: 1px dashed var(--line); font-size: 13px; color: var(--teal); }
+  .link-row { margin-top: 12px; font-size: 14px; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 720px) { .grid2 { grid-template-columns: 1fr; } .case { padding: 22px; } }
+  .mini { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .mini h3 { font-size: 17px; }
+  .mini p { font-size: 14px; color: var(--dim); margin: 8px 0 0; }
+  .mini .stack { margin-top: 14px; padding-top: 12px; }
+
+  .more { margin-top: 24px; font-size: 14.5px; }
+  .more div { padding: 12px 0; border-top: 1px solid var(--line); display: flex; gap: 16px; justify-content: space-between; flex-wrap: wrap; }
+  .more span { color: var(--dim); }
+
+  .tl { border-left: 2px solid var(--line); margin-left: 6px; padding-left: 24px; }
+  .job { position: relative; margin-bottom: 30px; }
+  .job::before { content: ""; position: absolute; left: -31px; top: 8px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--bg); }
+  .job-h { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+  .job-h h3 { font-size: 17px; }
+  .when { color: var(--dim); font-size: 13.5px; }
+  .job ul { margin: 8px 0 0; padding-left: 18px; font-size: 14.5px; color: var(--dim); }
+  .job li { margin-bottom: 4px; }
+
+  .skill { display: grid; grid-template-columns: 180px 1fr; gap: 4px 20px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 14.5px; }
+  .skill:first-of-type { border-top: none; }
+  .skill .k { color: var(--dim); }
+  @media (max-width: 560px) { .skill { grid-template-columns: 1fr; } }
+
+  .certs { list-style: none; padding: 0; margin: 0; font-size: 14.5px; }
+  .certs li { padding: 9px 0; border-top: 1px solid var(--line); }
+  .certs li:first-child { border-top: none; }
+  .certs a { color: var(--ink); }
+  .certs a:hover { color: var(--teal); }
+  .edu h3 { font-size: 18px; }
+  .edu p { margin: 6px 0 0; color: var(--dim); font-size: 14.5px; }
+
+  .contact { text-align: center; padding: 72px 0 64px; }
+  .contact h2 { margin-bottom: 12px; }
+  .contact p { color: var(--dim); max-width: 48ch; margin: 0 auto 24px; }
+  .contact .cta { justify-content: center; }
+  footer { text-align: center; color: var(--dim); font-size: 13px; padding: 0 0 36px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <b>Farah Fawzy</b>
+    <nav class="nav-links">
+      <a href="#work">Work</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="tb" type="button" onclick="tt()">Theme</button>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <div class="tag">AI &amp; Data Scientist · Cairo, Egypt · Open to Data Scientist / ML roles</div>
+    <h1>Farah Fawzy</h1>
+    <div class="line">I turn messy data into models people can trust.</div>
+    <p class="pitch">I build end-to-end machine learning systems, from raw data and feature engineering to evaluated, explainable models, across computer vision, NLP, and time-series anomaly detection.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:farahfawzydoso@gmail.com">Get in touch</a>
+      <a class="btn" href="https://www.linkedin.com/in/farah-fawzy-671348244" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/FarahFawzy" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n">92.5%</div><div class="d">hieroglyph classification accuracy across 767 symbol classes</div></div>
+    <div class="stat"><div class="n">0.824</div><div class="d">AUC for cooling-system anomaly detection, with zero false-alarm episodes on normal data</div></div>
+    <div class="stat"><div class="n">−59.62%</div><div class="d">response penalty from a 5-minute vs. 30-minute start (simulation)</div></div>
+    <div class="stat"><div class="n">31,500</div><div class="d">simulated fault-response runs used to compare policies</div></div>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="label">selected work</div>
+    <h2>Projects</h2>
+
+    <article class="case">
+      <h3>ThermoPilot: decision support for central cooling</h3>
+      <p class="ctx">Team graduation project at the Administrative Capital for Urban Development (ACUD): a data-driven system that helps operators detect faults in chiller and water systems and choose how to respond.</p>
+      <h4>What I built</h4>
+      <ul>
+        <li><strong>Anomaly detection</strong> on simulated chiller and water-system data (24 files, 77 sensors, 12.6M minute-level rows aggregated to 210,216 hourly rows), using a normal-behavior model over 71 sensor targets with residual scoring and causal smoothing.</li>
+        <li>A <strong>time-based train/calibration/test split</strong> to prevent data leakage.</li>
+        <li><strong>31,500 simulations</strong> (1,500 fault scenarios × 21 response actions) to compare response policies.</li>
+        <li><strong>Role-based dashboards</strong> for operators, engineers, and managers, plus a RAG and DuckDB/SQL data assistant that answers with retrieved passages, queries, and caveats.</li>
+        <li>A handover package (verification command, 16 new tests, hash-checked result files) and a phased shadow-mode pilot plan.</li>
+      </ul>
+      <h4>Results</h4>
+      <ul>
+        <li><strong>0.824 AUC</strong> with zero false-alarm episodes across 2,206 normal test hours.</li>
+        <li>Starting the response after 5 minutes instead of 30 cut the mean cooling deficit from <strong>677.84 to 261.02 TRh</strong> (−59.62% standardized penalty, simulation only).</li>
+        <li>Honest about limits: strongest on bypass faults (100% of fault hours alarmed), weaker on fouling and cooling-tower faults.</li>
+      </ul>
+      <div class="stack">Anomaly Detection · Time-Series Analysis · RAG · DuckDB · SQL · Simulation · Dashboards</div>
+    </article>
+
+    <article class="case">
+      <h3>ANKH: AI-powered Egyptian heritage platform</h3>
+      <p class="ctx">Graduation project (Digilians): a multimodal AI platform for exploring Egyptian cultural heritage using computer vision, NLP, and generative AI.</p>
+      <h4>What I built</h4>
+      <ul>
+        <li><strong>Hieroglyph analysis pipeline:</strong> 767-class symbol detection (YOLOv8/YOLO11), EfficientNet-B4 classification, transformer-based reading-order reconstruction, then English and Arabic translation via GPT-4o and Llama 3.</li>
+        <li><strong>Multimodal RAG:</strong> identify an artifact or landmark from an image, retrieve historical knowledge, and generate personalized descriptions, narratives, and audio.</li>
+        <li><strong>Document intelligence:</strong> text, table, and visual extraction with automated summarization and Visual Q&amp;A.</li>
+        <li>A multilingual assistant for source-grounded Q&amp;A, and a geolocation-based recommendation engine combining proximity scoring, LLM validation, and rule-based filtering.</li>
+      </ul>
+      <h4>Results</h4>
+      <ul><li><strong>92.5% accuracy</strong> on 767-class hieroglyph classification.</li></ul>
+      <div class="stack">Python · PyTorch · YOLOv8/11 · EfficientNet-B4 · Transformers · GPT-4o · Llama 3 · RAG · LangChain · Groq</div>
+      <div class="link-row"><a href="https://github.com/FarahFawzy/Graduation_Project/tree/hieroglyph_system" target="_blank" rel="noopener">View on GitHub →</a></div>
+    </article>
+
+    <div class="grid2">
+      <article class="mini">
+        <h3>AI PoseFit: real-time exercise form analysis</h3>
+        <p>A computer vision pipeline that extracts 33 body keypoints per frame with MediaPipe Pose and engineers joint-angle and symmetry features. A finite state machine segments reps, and a rule-based scorer turns form errors into an interpretable 0–100 score with a post-workout summary.</p>
+        <div class="stack">Python · MediaPipe · Computer Vision</div>
+        <div class="link-row"><a href="https://github.com/FarahFawzy/lungue-training" target="_blank" rel="noopener">View on GitHub →</a></div>
+      </article>
+      <article class="mini">
+        <h3>LLM document summarization &amp; QA</h3>
+        <p>An NLP application built on Qwen2.5-3B-Instruct for automated PDF summarization and context-grounded question answering over multi-page documents, reducing manual review time.</p>
+        <div class="stack">Hugging Face · Qwen2.5 · PyTorch · Prompt Engineering</div>
+        <div class="link-row"><a href="https://github.com/FarahFawzy/Text-Summarization-Q-A-" target="_blank" rel="noopener">View on GitHub →</a></div>
+      </article>
+    </div>
+
+    <div class="more">
+      <div><b>Context-aware sarcasm detection</b><span>~1M Reddit comments, five architectures up to a fine-tuned DistilBERT · <a href="https://github.com/FarahFawzy/Sarcasm-Detection-NLP" target="_blank" rel="noopener">GitHub</a></span></div>
+      <div><b>Skin cancer classification</b><span>CNN and ResNet50 transfer learning on ISIC, 81.97% test accuracy · <a href="https://github.com/FarahFawzy/Skin-disease-detection-using-Transfer-learning-and-CNN" target="_blank" rel="noopener">GitHub</a></span></div>
+      <div><b>Telco customer churn prediction</b><span>8+ models with SMOTE and threshold tuning, 83.9% churn recall</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="label">where I’ve worked</div>
+    <h2>Experience</h2>
+    <div class="tl">
+      <div class="job">
+        <div class="job-h"><h3>Trainee · Administrative Capital for Urban Development (ACUD)</h3><span class="when">Oct 2026 – Nov 2026</span></div>
+        <ul>
+          <li>Completed a training program culminating in ThermoPilot, a team graduation project applying data science to central cooling operations.</li>
+          <li>Presented the project in a final defense assessed on the problem, methodology, results, ROI, governance, and a pilot transition plan.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-h"><h3>Data Science Trainee · Digilians</h3><span class="when">Dec 2025 – Sep 2026</span></div>
+        <ul>
+          <li>Built end-to-end ML pipelines in Python, Pandas, NumPy, and Scikit-learn for classification and regression on real-world datasets.</li>
+          <li>Applied EDA, feature engineering, cross-validation, and hyperparameter tuning to improve predictive accuracy.</li>
+        </ul>
+      </div>
+      <div class="job">
+        <div class="job-h"><h3>AI Intern · Zewail City of Science and Technology</h3><span class="when">Jul 2023 – Sep 2023</span></div>
+        <ul>
+          <li>Implemented deep learning models with Keras and TensorFlow and prepared structured and unstructured datasets for research projects.</li>
+          <li>Analyzed and visualized data with Pandas, Matplotlib, and Seaborn, and presented findings with a research team.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="label">what I work with</div>
+    <h2>Skills</h2>
+    <div class="skill"><div class="k">Programming</div><div>Python, SQL</div></div>
+    <div class="skill"><div class="k">Machine learning &amp; AI</div><div>Scikit-learn, TensorFlow, Keras, PyTorch, XGBoost, CNNs, Transfer Learning, Hyperparameter Tuning, Cross-Validation</div></div>
+    <div class="skill"><div class="k">Generative AI &amp; NLP</div><div>LLMs, RAG, LangChain, Hugging Face Transformers, GPT-4o, Llama 3, Qwen2.5, DistilBERT, Prompt Engineering</div></div>
+    <div class="skill"><div class="k">Computer vision</div><div>YOLOv8/YOLO11, EfficientNet-B4, ResNet50, MediaPipe</div></div>
+    <div class="skill"><div class="k">Data analysis</div><div>Pandas, NumPy, EDA, Feature Engineering, Statistical Analysis, Anomaly Detection, Time-Series Analysis, SMOTE</div></div>
+    <div class="skill"><div class="k">Visualization &amp; tools</div><div>Power BI, Matplotlib, Seaborn, Plotly, Dash, Git, GitHub, DuckDB</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap grid2">
+    <div class="edu">
+      <div class="label">education</div>
+      <h3>B.Sc. Computer and Artificial Intelligence</h3>
+      <p>Banha University, Egypt · Oct 2020 – Jul 2024</p>
+      <p>GPA 3.45 / 4.0 (Very Good) · Graduation project grade: Excellent</p>
+    </div>
+    <div>
+      <div class="label">certifications</div>
+      <ul class="certs">
+        <li><a href="https://drive.google.com/file/d/1lKIjef0kyxZW4ijYyWCW1Ohx9rnZrI3X/view?usp=sharing" target="_blank" rel="noopener">AWS Certified Machine Learning Engineer – Associate (MLA-C01)</a></li>
+        <li><a href="https://coursera.org/verify/professional-cert/Y6MBRB0W4VW7" target="_blank" rel="noopener">IBM AI Engineering Professional Certificate</a></li>
+        <li><a href="https://drive.google.com/file/d/16PF96z4_m4R7Lkcbc1T8-mWa4D08iRx1/view?usp=sharing" target="_blank" rel="noopener">Huawei HCIA-AI (Certified ICT Associate)</a></li>
+        <li><a href="https://www.credly.com/badges/f3d4e0f9-e838-473e-b3e1-35d1963799e0/linked_in_profile" target="_blank" rel="noopener">AWS Academy Graduate – Cloud Foundations</a></li>
+        <li>NTI – Artificial Intelligence Training Program (80 hours)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let’s talk data.</h2>
+    <p>I’m looking for a Data Scientist role where I can apply machine learning to real business problems.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:farahfawzydoso@gmail.com">farahfawzydoso@gmail.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/farah-fawzy-671348244" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="https://github.com/FarahFawzy" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>© 2026 Farah Fawzy</footer>
+
+<script>
+  function tt() {
+    var r = document.documentElement;
+    var dark = r.getAttribute('data-theme') ? r.getAttribute('data-theme') === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = dark ? 'light' : 'dark';
+    r.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  }
+  try {
+    var s = localStorage.getItem('theme');
+    if (s) document.documentElement.setAttribute('data-theme', s);
+  } catch (e) {}
+</script>
+</body>
+</html>
